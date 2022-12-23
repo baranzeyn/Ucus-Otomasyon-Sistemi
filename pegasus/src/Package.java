@@ -26,7 +26,8 @@ public class Package implements IPassenger, ITicket {
 	}
 
 	public void listele() {
-		String secim;
+		Scanner scan = new Scanner(System.in);
+		String choice;
 		System.out.println("Eco Paket\n");
 		System.out.println("*****************");
 		System.out.println(
@@ -46,13 +47,13 @@ public class Package implements IPassenger, ITicket {
 						+ "\n düzenlenen biletlerde tarifeli uçuş kalkış saatine 2 saat kalana dek yapılan iptal ve değişikliklerde işlem bedeli uygulanmaz\n bilet iptalinde bilet ücreti Hizmet Bedeli hariç kesintisiz olarak iade edilir"
 						+ "\nTarifeli uçuş kalkış saatine 2 saatten az süre kalan durumda, Comfort Flex Paket kapsamında düzenlenen biletlerde değişiklik ve iptal talep edilmesi halinde misafirlerimize sadece Havalimanı Vergisi iade edilir.\n");
 		System.out.println("Paket seçimi yapmaya hazır mısınız?");
-		secim = scan.nextLine();
-		if (secim.equalsIgnoreCase("EVET")) {
+		choice = scan.nextLine();
+		if (choice.equalsIgnoreCase("EVET")) {
 			paketSecim();
-		} 
-		else if(secim.equalsIgnoreCase("hayır")) {
+		} else if (choice.equalsIgnoreCase("hayır")) {
 			System.out.println("Sistemden çıkış yapılıyor");
-			System.exit(0);}
+			System.exit(0);
+		}
 	}
 
 	@Override
@@ -62,7 +63,7 @@ public class Package implements IPassenger, ITicket {
 
 	class Bagaj {
 		public Bagaj() {
-
+			Scanner scan = new Scanner(System.in);
 			System.out.println("Yapmak istediğiniz işlemi seçiniz:");
 			System.out.println(" 1-Bagaj hakkını öğrenme\n 2-Bagaj durumu sorgulama\n 3-Kayıp bagaj bildirimi ");
 			int secim1 = scan.nextInt();
@@ -86,9 +87,7 @@ public class Package implements IPassenger, ITicket {
 				break;
 			default:
 				System.out.println("Hatalı tuşlama yaptınız...");
-				System.out.println("Bagaj işlemlerine geri yönlendiriliyorsunuz...");
-
-				Bagaj bagaj = new Bagaj();
+				System.out.println("Sistemden çıkış yapılıyor");
 			}
 
 		}
