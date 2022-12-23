@@ -44,15 +44,15 @@ public class Package implements IPassenger, ITicket {
 		System.out.println(
 				"ekstra konforlu ve esnek bir seyahat\nCezasız bilet değiştirme ve iptal hakkı\n 20 kg bagaj hakkı\nsandviç ikramı\n tek parça kabin bagajı ve koltuk seçme (ekstra diz mesafesi dahil)\nFly&Watch uçak içi eğlence ayrıcalıkları"
 						+ "\n düzenlenen biletlerde tarifeli uçuş kalkış saatine 2 saat kalana dek yapılan iptal ve değişikliklerde işlem bedeli uygulanmaz\n bilet iptalinde bilet ücreti Hizmet Bedeli hariç kesintisiz olarak iade edilir"
-						+ "\nTarifeli uçuş kalkış saatine 2 saatten az süre kalan durumda, Comfort Flex Paket kapsamında düzenlenen biletlerde değişiklik ve iptal talep edilmesi halinde misafirlerimize sadece Havalimanı Vergisi iade edilir.");
+						+ "\nTarifeli uçuş kalkış saatine 2 saatten az süre kalan durumda, Comfort Flex Paket kapsamında düzenlenen biletlerde değişiklik ve iptal talep edilmesi halinde misafirlerimize sadece Havalimanı Vergisi iade edilir.\n");
 		System.out.println("Paket seçimi yapmaya hazır mısınız?");
 		secim = scan.nextLine();
 		if (secim.equalsIgnoreCase("EVET")) {
 			paketSecim();
-		} else {
-			System.out.println("Sistemden çıkış yapılıyor...");
-			System.exit(0);
-		}
+		} 
+		else if(secim.equalsIgnoreCase("hayır")) {
+			System.out.println("Sistemden çıkış yapılıyor");
+			System.exit(0);}
 	}
 
 	@Override
