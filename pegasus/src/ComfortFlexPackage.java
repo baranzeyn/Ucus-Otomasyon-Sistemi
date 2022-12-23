@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class ComfortFlexPackage implements IEat {
+public class ComfortFlexPackage  extends Package implements IEat,IFlyNWatch {
 	Scanner scan = new Scanner(System.in);
 
 	public void yemekGoruntule() {
@@ -69,5 +69,42 @@ public class ComfortFlexPackage implements IEat {
 		System.out.println("Menüyü Görüntüleniyor...");
 		yemekGoruntule();
 	}
+
+	public void flyNwatch() {
+		int netflix;
+		System.out.println("Fly&Watch hizmetine hoşgeldiniz");
+		System.out.println("Dizileri görüntülemek için 1'e\nFilmleri görüntülemek için 2'i tuşlayınız");
+		netflix=scan.nextInt();
+		switch(netflix) {
+		case 1:
+			diziGoruntule();
+			break;
+		case 2:
+			filmGoruntule();
+			break;
+			default:
+				System.out.println("Hatalı tuşlama yaptınız ");
+				break;
+		}
+	}
+
+	@Override
+	public void diziGoruntule() {//10.
+		// TODO Auto-generated method stub
+		for(int i=0;i<=12;i++) {
+			System.out.println(diziler[i]);
+		}
+		
+	}
+
+	@Override
+	public void filmGoruntule() {//11.
+		// TODO Auto-generated method stub
+		for(int i=0;i<=12;i++) {
+			System.out.println(filmler[i]);
+		}
+		
+	}
+
 
 }
