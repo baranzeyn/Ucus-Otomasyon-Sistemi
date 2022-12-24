@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 
 public class Package implements IPassenger, ITicket, IAdditionalServices {
@@ -58,8 +57,23 @@ public class Package implements IPassenger, ITicket, IAdditionalServices {
 	}
 
 	@Override
-	public void check_in(String ad, String soyad, String biletNo) {
-
+	public void check_in(String ad, String soyad, String biletNo, int checkinKodu) {
+		Scanner scin = new Scanner(System.in);
+		
+		System.out.println("Adınızı Girin: ");
+		String name = scin.next();
+		System.out.println("Soyadınızı Girin: ");
+		String lastname = scin.next();
+		System.out.println("Bilet Numaranızı Girin: ");
+		String ticketNo = scin.next();
+		System.out.println("Check-in Kodunu Giriniz: ");
+		int kod = scin.nextInt();
+		
+		if(name.equals(ad) && lastname.equals(soyad) && ticketNo.equals(biletNo) && (kod == checkinKodu)) {
+			System.out.println("Biletiniz onaylandı. Ek hizmetlerden yararlanabilirsiniz.");
+		}else {
+			System.out.println("Biletiniz onaylanmadı. Bilgilerinizi kontrol ediniz.");
+		}
 	}
 
 	class Bagaj {
@@ -236,12 +250,89 @@ public class Package implements IPassenger, ITicket, IAdditionalServices {
 		String aracPlaka = scan.nextLine();
 		System.out.println("Aracınız ne kadar zaman otoparkta bulunacaktır?");
 		int aracZaman = scan.nextInt();
-		if(aracZaman>0 &&  aracZaman<=3) {
+		if (aracZaman > 0 && aracZaman <= 3) {
 			System.out.println("Otopark için ödeyeceğiniz tutar 150 liradır...");
-		}
-		else {
-			System.out.println("Otopark için ödeyeceğiniz tutar:" + (150 + (aracZaman-3)*200 ) );
+		} else {
+			System.out.println("Otopark için ödeyeceğiniz tutar:" + (150 + (aracZaman - 3) * 200));
 		}
 	}
-		
+	
+	public void hediyeKarti(String ad, String soyad) {
+		Scanner sckart = new Scanner(System.in);
+
+		String[] kartCepno = { "5466097235", "5396480714", "5056325465" };
+		String[] kartSifre = { "sivas1071", "eniyisiKamilhoca", "zeynepama1.75" };
+		int[] kartTutar = { 265, 480, 600 };
+
+		String[] yenikayitNo = new String[1];
+		String[] yenikayıtSifre = new String[1];
+		int[] yenikayıtTutar = new int[1];
+
+		System.out.println(
+				"***Seyahat deneyimini sevdiklerinizle paylaşmanın en güzel yolu Çakma Pegasus Hediye Kart ile sevdiklerinize unutulmaz bir hatıra bırakın.***\n");
+
+		System.out.println("Hediye kartı almak için bir işlem seçiniz.\n");
+		System.out.println("1.Giriş Yap\n2.Üye Ol");
+		int tercih = sckart.nextInt();
+
+		switch (tercih) {
+		case 1:
+			System.out.println("Telefon Numarası: ");
+			String telNo = sckart.next();
+			System.out.println("Şİfre: ");
+			String sifre = sckart.next();
+
+			if (kartCepno[0].equals(telNo) && kartSifre[0].equals(sifre)) {
+				System.out.println("Giriş başarılı bir şekilde gerçekleştirilmiştir.\n\n");
+				System.out.println("Hediye kartınıza yüklemek istediğiniz tutarı girin: ");
+				int tutar = sckart.nextInt();
+
+				System.out.println("Hediye kartınızın yeni bakiyesi: " + (tutar + kartTutar[0]));
+			} else if (kartCepno[1].equals(telNo) && kartSifre[1].equals(sifre)) {
+				System.out.println("Giriş başarılı bir şekilde gerçekleştirilmiştir.\n\n");
+				System.out.println("Hediye kartınıza yüklemek istediğiniz tutarı girin: ");
+				int tutar = sckart.nextInt();
+
+				System.out.println("Hediye kartınızın yeni bakiyesi: " + (tutar + kartTutar[1]));
+			} else if (kartCepno[2].equals(telNo) && kartSifre[2].equals(sifre)) {
+				System.out.println("Giriş başarılı bir şekilde gerçekleştirilmiştir.\n\n");
+				System.out.println("Hediye kartınıza yüklemek istediğiniz tutarı girin: ");
+				int tutar = sckart.nextInt();
+				System.out.println("Hediye kartınızın yeni bakiyesi: " + (tutar + kartTutar[2]));
+			} else {
+				System.out.println("Telefon numaranızı veya sifrenizi hatalı girdiniz.");
+			}
+
+			break;
+
+		case 2:
+			System.out.println("Ad: ");
+			String isim = sckart.next();
+			System.out.println("Soyad: ");
+			String soyisim = sckart.next();
+			System.out.println("Telefon Numarası: ");
+			String telNo1 = sckart.next();
+			yenikayitNo[0] = ad;
+			System.out.println("Şifre: ");
+			yenikayıtSifre[0] = soyad;
+			String sifre1 = sckart.next();
+			System.out.println("Şifrenizi tekrar giriniz: ");
+			String sifretekrar = sckart.next();
+			if (sifre1.equals(sifretekrar)) {
+				System.out.println(
+						"Üyeliğiniz başarılı bir şekilde gerçekleşmiştir, telefon numaranız sisteme kaydedilmiştir.");
+				System.out.println("Hediye kartınıza yüklemek istediğiniz tutarı giriniz: ");
+				int tutar1 = sckart.nextInt();
+				yenikayıtTutar[0] = tutar1;
+				System.out.println("\nHediye kartınızın yeni bakiyesi: " + tutar1);
+				System.out.println("\nSisteme kaydedilen bilgiler:\n");
+				System.out.println("Telefon Numarası: " + yenikayitNo[0] + "\n" + "Şifre: " + yenikayıtSifre[0] + "\n"
+						+ "Hediye Kartı Tutarı: " + yenikayıtTutar[0]);
+			} else {
+				System.out.println(
+						"Hatalı tuşlama yaptığınızdan dolayı üyeliğiniz gerçekleşmedi. Lütfen tekrar deneyiniz.");
+			}
+		}
 	}
+
+}
