@@ -1,6 +1,7 @@
+
 import java.util.Scanner;
 
-public class Package implements IPassenger, ITicket {
+public class Package implements IPassenger, ITicket, IAdditionalServices {
 	Scanner scan = new Scanner(System.in);
 
 	public Package() {
@@ -139,4 +140,108 @@ public class Package implements IPassenger, ITicket {
 			System.out.println(no + " Numaralı bagaj hakkında en kısa zamanda dönüş yapılacaktır, iyi günler dileriz.");
 		}
 	}
-}
+
+	int[] koltuk = { 45, 16, 63, 72, 42, 65, 43, 34, 58, 66 };
+
+	@Override
+	public void koltukSec() {
+		boolean empty = true;
+		System.out.println("Değiştirmek istediğiniz koltuk numarasını giriniz:");
+		int koltuk1 = scan.nextInt();
+		System.out.println("Seçmek istediğiniz koltugu giriniz: ");
+		int koltuk2 = scan.nextInt();
+
+		for (int a : koltuk) {
+			if (koltuk2 == a) {
+				System.out.println("Koltuk değiştirme işleminiz başarıyla tamamlanmıştır. ");
+				a = koltuk1;
+			} else
+				empty = false;
+
+		}
+
+		if (empty == false) {
+			System.out.println("Koltuk değiştirme işleminiz başarısız. ");
+		}
+	}
+
+	@Override
+	public void ekBagaj() {
+		System.out.println("-----Ek Bagaj Hizmeti Açıklaması-----");
+		System.out.println(
+				"Paketlerinizdeki bagajlara ek olarak bagaj kullanmak için kg başına 30 lira ücretlendirme alınır...");
+		ekBagajHesapla();
+	}
+
+	@Override
+	public void ekBagajHesapla() {
+		System.out.println("Ekstra kaç kg bagajınız bulunmaktadır?");
+		int bagaj = scan.nextInt();
+		System.out.println("Bagaj için ödeyeceğiniz tutar:" + (bagaj * 30));
+	}
+
+	@Override
+	public void ulasim() {
+		System.out.println("Tercih ettiğiniz ulaşım yöntemini seçiniz:");
+		System.out.println("1-Otobüs \n2-Minibüs \n3-Taksi \n4-İzban ");
+		int secim5 = scan.nextInt();
+
+		switch (secim5) {
+		case 1:
+			System.out.println("207 / 105 / 851 hatları ile havaalına ulaşabilirsiniz... ");
+			break;
+		case 2:
+			System.out.println("GaziEmir havaalanı hattı ile ulaşabilirsiniz...");
+			break;
+		case 3:
+			System.out.println("232 326 33 23 numarası ile taksiye ulaşabilirsiniz....");
+			break;
+		case 4:
+			System.out.println("Havaalanı istasyonunda inebilirsiniz...");
+			break;
+		default:
+			System.out.println("Hatalı tuşlama yaptınız...");
+
+		}
+	}
+
+	@Override
+	public void otel() {
+		System.out.println("Otel Seçenekleri görüntüleniyor...");
+		otelGoruntule();
+	}
+
+	@Override
+	public void otelGoruntule() {
+		System.out.println("-----5 Yıldızlı Oteller-----");
+		System.out.println(
+				"1-Rose Garden Hotel \n2-Euphoria Hotel \n3-Daisy Hotel \n4-Dandelion Hotel \n5-Lavender Hotel");
+		System.out.println("-----3 Yıldızlı Oteller-----");
+		System.out.println(
+				"1-Transilvanya Hotel \n2-Sünger Bob Hotel \n3-Mickey Mouse Hotel \n4-Cartoon Network Hotel \n5-Garden Hotel");
+	}
+
+	@Override
+	public void otoparkHizmeti() {
+		System.out.println("-----Otopark Hizmeti Açıklaması-----");
+		System.out.println(
+				"Otopark hizmetinden yararlanan müşterilerimiz için ilk 3 gün 150 lira standart olarak ücretlendirilir.");
+		System.out.println("3 günden sonra her gün için 200 lira ücretlendirilmesi bulunmaktadır.");
+		otoparkTutarHesapla();
+	}
+
+	@Override
+	public void otoparkTutarHesapla() {
+		System.out.println("Aracınızın plakasını giriniz");
+		String aracPlaka = scan.nextLine();
+		System.out.println("Aracınız ne kadar zaman otoparkta bulunacaktır?");
+		int aracZaman = scan.nextInt();
+		if(aracZaman>0 &&  aracZaman<=3) {
+			System.out.println("Otopark için ödeyeceğiniz tutar 150 liradır...");
+		}
+		else {
+			System.out.println("Otopark için ödeyeceğiniz tutar:" + (150 + (aracZaman-3)*200 ) );
+		}
+	}
+		
+	}
