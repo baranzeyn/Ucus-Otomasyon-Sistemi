@@ -2,8 +2,9 @@
 public interface IPassenger {
 	String ad="kübra";
 	String soyad="kılıç";
-	String tcNo="212802030";
-	int yas=20;
+	int biletNumarası=2823889;
+	int check_inNumarası=2092;
+	
 	
 	
 

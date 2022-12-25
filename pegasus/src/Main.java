@@ -8,7 +8,7 @@ public class Main {
 		System.out.println("***Kasaba Official Airlines Hizmetinizde***\n");
 		System.out.println("Seçenekler Görüntüleniyor...\n");
 		System.out.println(
-				"  1.Bilet Al\n  2.Online Check-in\n  3.Ek Hizmetlerden Yararlan\n  4.Bagaj İşlemleri\n  5.Pegasus Kafeden Yararlan\n  6.Fly&Watch\n  7.Opsiyonel Bilet İşlemleri\n");
+				"  1.Bilet Al\n  2.Online Check-in\n  3.Ek Hizmetlerden Yararlan\n  4.Bagaj İşlemleri\n  5.Kasaba Official Kafeden Yararlan\n  6.Fly&Watch\n  7.Opsiyonel Bilet İşlemleri\n8.Ulaşım");
 		System.out.println("Yapmak istediğiniz işlemi seçiniz: ");
 		secenek = sc.nextInt();
 
@@ -18,19 +18,22 @@ public class Main {
 		case 1:
 			package1.bilgiler();
 			System.out.println("Check-in yapmak istiyor musunuz?\n1-Evet\n2-Hayır");
-			int secim=sc.nextInt();
-			switch(secim) {
+			int secim = sc.nextInt();
+			switch (secim) {
 			case 1:
 				package1.check_in();
 				break;
 			case 2:
 				break;
 			}
-		
+			break;
 		case 2:
-			package1.check_in();
+			package1.check_in2();
 			break;
 		case 3:
+			package1.ekHizmetgoruntule();
+			
+			
 			break;
 		case 4:
 			break;
@@ -43,5 +46,5 @@ public class Main {
 		default:
 			System.out.println("Hatalı tuşlama yaptınız..");
 		}
-	}}
-
+	}
+}

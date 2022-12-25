@@ -115,14 +115,14 @@ public class Package implements IPassenger, ITicket, IAdditionalServices {
 					System.out.println("Bilet ücretiniz:" + biletHesapla() * 2);
 					biletAlNo();
 					checkinNoAl();
-					
+
 				}
 
 				else {
 					System.out.println("Bilet ücretiniz:" + (biletHesaplaOld() * 2));
 					biletAlNo();
 					checkinNoAl();
-					
+
 				}
 			}
 
@@ -206,8 +206,9 @@ public class Package implements IPassenger, ITicket, IAdditionalServices {
 			System.exit(0);
 		}
 	}
-	// -----------------------------------------------------------
 
+	// -----------------------------------------------------------
+	// yeni bilet alan kişinin checkini
 	public void check_in() {
 		Scanner scin = new Scanner(System.in);
 
@@ -224,19 +225,61 @@ public class Package implements IPassenger, ITicket, IAdditionalServices {
 		int s3 = biletalAd.indexOf(name);
 		int s1 = checkinNo.indexOf(kod);
 		int s2 = biletalNo.indexOf(ticketNo);
-		if (s1 == s2 && s4 == s3) {
+		if ((s1 == 0) && (s2 == 0) && s4 == s3) {
 			System.out.println("Biletiniz onaylandı. Ek hizmetlerden yararlanabilirsiniz.");
 		} else {
 			System.out.println("Biletiniz onaylanmadı. Bilgilerinizi kontrol ediniz.");
 		}
 	}
 
+	public void check_in2() {
+
+		System.out.println("Adınızı Girin: ");
+		String name1 = scan.next();
+		System.out.println("Soyadınızı Girin: ");
+		String lastname1 = scan.next();
+		System.out.println("Bilet Numaranızı Girin: ");
+		int ticketNo1 = scan.nextInt();
+		System.out.println("Check-in Kodunu Giriniz: ");
+		int kod1 = scan.nextInt();
+		if (name1.equals(IPassenger.ad) && lastname1.equals(IPassenger.soyad) && ticketNo1 == (IPassenger.biletNumarası)
+				&& kod1 == IPassenger.check_inNumarası) {
+			System.out.println("Biletiniz onaylandı. Ek hizmetlerden yararlanabilirsiniz.");
+		} else {
+			System.out.println("Biletiniz onaylanmadı. Bilgilerinizi kontrol ediniz.");
+		}
+	}
+
+	public void ekHizmetgoruntule() {
+		int secim2;
+		System.out.println("1-Koltuk Seç\n2-Otel Konaklama\n3-Ek Bagaj\n4-Otopark Hizmeti");
+		secim2 = scan.nextInt();
+		switch (secim2) {
+		case 1:
+			koltukSec();
+			break;
+		case 2:
+			otel();
+			break;
+		case 3:
+			ekBagaj();
+			break;
+		case 4:
+			otoparkHizmeti();
+			break;
+
+		}
+	}
+
 	@Override
 	public void koltukSec() {
 		int[] koltuk = { 45, 16, 63, 72, 42, 65, 43, 34, 58, 66 };
-		// TODO Auto-generated method stub
+		System.out.println("Boş Koltuklar:");
+		for (int b = 0; b < koltuk.length; b++) {
+			System.out.print(koltuk[b] + ", ");
+		}
 		boolean empty = true;
-		System.out.println("Değiştirmek istediğiniz koltuk numarasını giriniz:");
+		System.out.println("\nDeğiştirmek istediğiniz koltuk numarasını giriniz:");
 		int koltuk1 = scan.nextInt();
 		System.out.println("Seçmek istediğiniz koltugu giriniz: ");
 		int koltuk2 = scan.nextInt();
@@ -245,9 +288,12 @@ public class Package implements IPassenger, ITicket, IAdditionalServices {
 			if (koltuk2 == a) {
 				System.out.println("Koltuk değiştirme işleminiz başarıyla tamamlanmıştır. ");
 				a = koltuk1;
-			} else
+				empty=true;
+				break;
+			} else {
 				empty = false;
 
+			}
 		}
 
 		if (empty == false) {
@@ -256,10 +302,8 @@ public class Package implements IPassenger, ITicket, IAdditionalServices {
 
 	}
 
-
 	// -------------------------------------------------------------------------
 
-	@Override
 	public void ulasim() {
 		// TODO Auto-generated method stub
 		System.out.println("Tercih ettiğiniz ulaşım yöntemini seçiniz:");
@@ -285,7 +329,8 @@ public class Package implements IPassenger, ITicket, IAdditionalServices {
 		}
 
 	}
-	//-------------------------------------------------------------------------
+
+	// -------------------------------------------------------------------------
 	public void hediyeKarti(String ad, String soyad) {
 		Scanner sckart = new Scanner(System.in);
 
@@ -393,7 +438,7 @@ public class Package implements IPassenger, ITicket, IAdditionalServices {
 		// TODO Auto-generated method stub
 		System.out.println("-----Otopark Hizmeti Açıklaması-----");
 		System.out.println(
-				"Otopark hizmetinden yararlanan müşterilerimiz için ilk 3 gün 150 lira standart olarak ücretlendirilir.");
+				"Otopark hizmetinden yararlanan müşterilerimiz için ilk 3 gün 300 lira standart olarak ücretlendirilir.");
 		System.out.println("3 günden sonra her gün için 200 lira ücretlendirilmesi bulunmaktadır.");
 		otoparkTutarHesapla();
 
@@ -417,14 +462,21 @@ public class Package implements IPassenger, ITicket, IAdditionalServices {
 
 	@Override
 	public void ekBagaj() {
-		// TODO Auto-generated method stub
-		
+
+		System.out.println("-----Ek Bagaj Hizmeti Açıklaması-----");
+		System.out.println(
+				"Paketlerinizdeki bagajlara ek olarak bagaj kullanmak için kg başına 30 lira ücretlendirme alınır...");
+		ekBagajHesapla();
+
 	}
 
 	@Override
 	public void ekBagajHesapla() {
 		// TODO Auto-generated method stub
-		
+		System.out.println("Ekstra kaç kg bagajınız bulunmaktadır?");
+		int bagaj = scan.nextInt();
+		System.out.println("Bagaj için ödeyeceğiniz tutar:" + (bagaj * 30));
+
 	}
 }
 // -----------------------------------------------------------
@@ -512,28 +564,6 @@ class Bagaj {
 	public void kayıpBagajBildirimi(String no) {
 		System.out.println(no + " Numaralı bagaj hakkında en kısa zamanda dönüş yapılacaktır, iyi günler dileriz.");
 	}
-	//-------------------------------------------------------------------------
-		
-		public void ekBagaj() {
-			// TODO Auto-generated method stub
-			System.out.println("-----Ek Bagaj Hizmeti Açıklaması-----");
-			System.out.println(
-					"Paketlerinizdeki bagajlara ek olarak bagaj kullanmak için kg başına 30 lira ücretlendirme alınır...");
-			ekBagajHesapla();
+	// -------------------------------------------------------------------------
 
-		}
-		// -------------------------------------------------------------------------
-
-		public void ekBagajHesapla() {
-			// TODO Auto-generated method stub
-			System.out.println("Ekstra kaç kg bagajınız bulunmaktadır?");
-			int bagaj = scan.nextInt();
-			System.out.println("Bagaj için ödeyeceğiniz tutar:" + (bagaj * 30));
-
-		}
-	// -----------------------------------------------------------
-
-	
-	
 }
-//-----------------------------------------------------------
