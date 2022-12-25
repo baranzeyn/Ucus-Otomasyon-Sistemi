@@ -5,7 +5,6 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int secenek;
-
 		System.out.println("***Kasaba Official Airlines Hizmetinizde***\n");
 		System.out.println("Seçenekler Görüntüleniyor...\n");
 		System.out.println(
@@ -18,8 +17,18 @@ public class Main {
 		switch (secenek) {
 		case 1:
 			package1.bilgiler();
-			break;
+			System.out.println("Check-in yapmak istiyor musunuz?\n1-Evet\n2-Hayır");
+			int secim=sc.nextInt();
+			switch(secim) {
+			case 1:
+				package1.check_in();
+				break;
+			case 2:
+				break;
+			}
+		
 		case 2:
+			package1.check_in();
 			break;
 		case 3:
 			break;
@@ -34,5 +43,5 @@ public class Main {
 		default:
 			System.out.println("Hatalı tuşlama yaptınız..");
 		}
-	}
-}
+	}}
+

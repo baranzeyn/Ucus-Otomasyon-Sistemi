@@ -1,17 +1,17 @@
 import java.util.Scanner;
 
-public class AdvantagePackage extends Package implements IEat,IFlyNWatch{
+public class AdvantagePackage extends Package implements IEat, IFlyNWatch {
 	Scanner scan = new Scanner(System.in);
 
 	@Override
-	public void yemek() {   //7.method
+	public void yemek() { // 7.method
 		System.out.println("Menüyü Görüntüleniyor...");
 		yemekGoruntule();
 
 	}
 
 	@Override
-	public void yemekGoruntule() {//8.method
+	public void yemekGoruntule() {// 8.method
 		System.out.println("İçecekler için 1'i\nYemekler için 2'yi\nTatlılar için 3'ü tuşlayınız. ");
 		int secim2 = scan.nextInt();
 
@@ -56,7 +56,7 @@ public class AdvantagePackage extends Package implements IEat,IFlyNWatch{
 	}
 
 	@Override
-	public int tutarHesapla(int secim) {//9.method
+	public int tutarHesapla(int secim) {// 9.method
 
 		System.out.println("Kaç adet almak istersiniz:");
 		int adet = scan.nextInt();
@@ -72,40 +72,41 @@ public class AdvantagePackage extends Package implements IEat,IFlyNWatch{
 		return 0;
 
 	}
+
 	public void flyNwatch() {
 		int netflix;
 		System.out.println("Fly&Watch hizmetine hoşgeldiniz");
 		System.out.println("Dizileri görüntülemek için 1'e\nFilmleri görüntülemek için 2'i tuşlayınız");
-		netflix=scan.nextInt();
-		switch(netflix) {
+		netflix = scan.nextInt();
+		switch (netflix) {
 		case 1:
 			diziGoruntule();
 			break;
 		case 2:
 			filmGoruntule();
 			break;
-			default:
-				System.out.println("Hatalı tuşlama yaptınız ");
-				break;
+		default:
+			System.out.println("Hatalı tuşlama yaptınız ");
+			break;
 		}
 	}
 
 	@Override
-	public void diziGoruntule() {//10.
+	public void diziGoruntule() {// 10.
 		// TODO Auto-generated method stub
-		for(int i=0;i<=12;i++) {
+		for (int i = 0; i <= 12; i++) {
 			System.out.println(diziler[i]);
 		}
-		
+
 	}
 
 	@Override
-	public void filmGoruntule() {//11.
+	public void filmGoruntule() {// 11.
 		// TODO Auto-generated method stub
-		for(int i=0;i<=12;i++) {
+		for (int i = 0; i <= 12; i++) {
 			System.out.println(filmler[i]);
 		}
-		
+
 	}
 
 }

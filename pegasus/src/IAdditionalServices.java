@@ -1,6 +1,5 @@
 
 public interface IAdditionalServices {
-	
 	 void koltukSec();
 	 void ekBagaj();
 	 void ekBagajHesapla();

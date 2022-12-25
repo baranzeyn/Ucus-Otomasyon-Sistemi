@@ -6,5 +6,5 @@ public interface ITicket {
 	public String durumBilgisi = "delayed";
 	// kalkış\iniş saati eklenecek
 
-	public void check_in(String ad, String soyad, String biletNo);
+	
 }
