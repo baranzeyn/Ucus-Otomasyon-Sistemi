@@ -1,9 +1,23 @@
 import java.util.Scanner;
+import java.util.ArrayList;
+
 
 public class Package implements IPassenger, ITicket, IAdditionalServices {
 	Scanner scan = new Scanner(System.in);
 
+    ArrayList<String> biletalAd = new ArrayList<String>(); 
+    ArrayList<String> biletalSoyad = new ArrayList<String>(); 	
+    ArrayList<String> biletalEmail = new ArrayList<String>(); 
+	ArrayList<Integer> biletalYas = new ArrayList<Integer>();
+	ArrayList<String>biletalTelno = new ArrayList<String>();
+	ArrayList<Integer>biletSonTutar = new ArrayList<Integer>();
+	
+	
+
 	public Package() {
+	}
+
+	public Package(int b) {
 		int a;
 		System.out.println("Paket seçimi için 1'i\nPaketlerin özelliklerini görmek için 2'i tuşlayınız ");
 		a = scan.nextInt();
@@ -23,6 +37,110 @@ public class Package implements IPassenger, ITicket, IAdditionalServices {
 				"Aşağıdaki paketlerden birini seçiniz\n1-Eco Paket\n2-Avantaj Paket\n3-Comfort Flex Paket\n4-Super Eco Paket ");
 		secim = scan.nextInt();
 		return secim;
+	}
+
+	public void bilgiler() {
+
+		System.out.println("Kaç kişi için bilet alınacaktır: ");
+        int kisiS = scan.nextInt();
+		
+
+		for (int i = 0; i < kisiS; i++) {
+			System.out.println("Adınız: : ");
+			String ad1 = scan.next();
+			biletalAd.add(ad1);
+			System.out.println("Soyadınız: ");
+			String soyad1 = scan.next();
+			biletalSoyad.add(soyad1);
+			System.out.println("Telefon Numaranız: . ");
+			String tel1 = scan.next();
+			biletalTelno.add(tel1);
+			System.out.println("Yaşınız: ");
+			int age = scan.nextInt();
+			biletalYas.add(age);
+			System.out.println("E-mail Adresiniz: ");
+			String email = scan.next();
+			biletalEmail.add(email);
+			biletAl();
+		}
+
+	}
+
+	public void biletAl() {
+		
+
+		System.out.println("Nereden: ");
+		String nereden = scan.next();
+		System.out.println("Nereye: ");
+		String nereye = scan.next();
+		System.out.println("1.Tek Yön\n2.Çift Yön");
+		System.out.println("Seçiminizi yapınız: ");
+		int yon = scan.nextInt();
+
+		if (yon == 1) {
+			for(int y : biletalYas) {
+				if(y>0 && y<=6) {
+					System.out.println("Bilet ücretiniz:" + biletHesaplaKid());
+					biletSonTutar.add(biletHesaplaKid());
+				}
+				
+				else if(y>6 && y<65) {
+					System.out.println("Bilet ücretiniz:" + biletHesapla());
+					biletSonTutar.add(biletHesapla());
+
+				}
+				else
+				{
+					System.out.println("Bilet ücretiniz:" + biletHesaplaOld());
+					biletSonTutar.add(biletHesaplaOld());
+
+				}
+			}
+		}
+		
+		else if(yon ==2) {
+			for(int z : biletalYas) {
+				if(z>0 && z<=6) {
+					System.out.println("Bilet ücretiniz:" + (biletHesaplaKid()*2));
+				}
+				
+				else if(z>6 && z<65) {
+					System.out.println("Bilet ücretiniz:" + biletHesapla()*2);
+				}
+				
+				else
+				{
+					System.out.println("Bilet ücretiniz:" + (biletHesaplaOld()*2));
+				}
+			}
+			
+		}
+		else {
+			System.out.println("Hatalı tuşlama yaptınız...");
+		}
+		System.out.println("Toplam Tutar: " + biletToplamTutar());
+	}
+
+	public int biletHesaplaKid() {
+		return 26;
+		
+	}
+
+	public int biletHesapla() {
+		return 32;
+	}
+
+	public int biletHesaplaOld(){
+		return 33;
+
+	}
+	public int biletToplamTutar() {
+		int toplam =0;
+		for (int topla : biletSonTutar) {
+			toplam += topla;
+		}
+		return toplam;
+		
 	}
 
 	public void listele() {
@@ -59,7 +177,7 @@ public class Package implements IPassenger, ITicket, IAdditionalServices {
 	@Override
 	public void check_in(String ad, String soyad, String biletNo, int checkinKodu) {
 		Scanner scin = new Scanner(System.in);
-		
+
 		System.out.println("Adınızı Girin: ");
 		String name = scin.next();
 		System.out.println("Soyadınızı Girin: ");
@@ -68,10 +186,10 @@ public class Package implements IPassenger, ITicket, IAdditionalServices {
 		String ticketNo = scin.next();
 		System.out.println("Check-in Kodunu Giriniz: ");
 		int kod = scin.nextInt();
-		
-		if(name.equals(ad) && lastname.equals(soyad) && ticketNo.equals(biletNo) && (kod == checkinKodu)) {
+
+		if (name.equals(ad) && lastname.equals(soyad) && ticketNo.equals(biletNo) && (kod == checkinKodu)) {
 			System.out.println("Biletiniz onaylandı. Ek hizmetlerden yararlanabilirsiniz.");
-		}else {
+		} else {
 			System.out.println("Biletiniz onaylanmadı. Bilgilerinizi kontrol ediniz.");
 		}
 	}
@@ -256,7 +374,7 @@ public class Package implements IPassenger, ITicket, IAdditionalServices {
 			System.out.println("Otopark için ödeyeceğiniz tutar:" + (150 + (aracZaman - 3) * 200));
 		}
 	}
-	
+
 	public void hediyeKarti(String ad, String soyad) {
 		Scanner sckart = new Scanner(System.in);
 
