@@ -35,7 +35,7 @@ public class Package implements IPassenger, ITicket, IAdditionalServices {
 		int secim;
 		Scanner scan = new Scanner(System.in);
 		System.out.println(
-				"Aşağıdaki paketlerden birini seçiniz\n1-Eco Paket\n2-Avantaj Paket\n3-Comfort Flex Paket\n4-Super Eco Paket ");
+				"Aşağıdaki paketlerden birini seçiniz\n1-Eco Paket\n2-Avantaj Paket\n3-Comfort-Flex Paket\n4-Super-Eco Paket ");
 		secim = scan.nextInt();
 		return secim;
 	}
@@ -288,16 +288,16 @@ public class Package implements IPassenger, ITicket, IAdditionalServices {
 			if (koltuk2 == a) {
 				System.out.println("Koltuk değiştirme işleminiz başarıyla tamamlanmıştır. ");
 				a = koltuk1;
-				empty=true;
+				empty = true;
 				break;
 			} else {
 				empty = false;
 
 			}
 		}
-
+//try catch
 		if (empty == false) {
-			System.out.println("Koltuk değiştirme işleminiz başarısız. ");
+			System.out.println("Koltuk değiştirme işleminiz başarısız.Seçmek istediğiniz koltuk doludur. ");
 		}
 
 	}
@@ -423,14 +423,138 @@ public class Package implements IPassenger, ITicket, IAdditionalServices {
 	@Override
 	public void otelGoruntule() {
 		// TODO Auto-generated method stub
-		System.out.println("-----5 Yıldızlı Oteller-----");
-		System.out.println(
-				"1-Rose Garden Hotel \n2-Euphoria Hotel \n3-Daisy Hotel \n4-Dandelion Hotel \n5-Lavender Hotel");
-		System.out.println("-----3 Yıldızlı Oteller-----");
-		System.out.println(
-				"1-Transilvanya Hotel \n2-Sünger Bob Hotel \n3-Mickey Mouse Hotel \n4-Cartoon Network Hotel \n5-Garden Hotel");
+		int gnYUcreti = 0;
+		int gnCUcreti = 0;
+		System.out
+				.println("Otel tipi seçiniz\n" + "1- 5 yıldızlı otel seçenekleri\n" + "2- 3 yıldızlı otel seçenekleri");
+		int otelTipiSecimi = scan.nextInt();
+		if (otelTipiSecimi == 2) {
+			System.out.println("-----3 Yıldızlı Oteller-----");
+			System.out.println(
+					"1-Transilvanya Hotel \n2-Sünger Bob Hotel \n3-Mickey Mouse Hotel \n4-Cartoon Network Hotel \n5-Garden Hotel");
+			System.out.println("Otel seçiminizi yapınız:");
+			int otelSecim = scan.nextInt();
+			System.out.println("Kaç yetişkin kişi kalacaksınız:");
+			int otelYKisi = scan.nextInt();
+			System.out.println("Kaç çocuk kişi kalacaksınız:");
+			int otelCkisi = scan.nextInt();
+			System.out.println("kaç gün kalacaksınız");
+			int otelGun = scan.nextInt();
+			switch (otelSecim) {
+			case 1:
+				gnYUcreti = 500;
+				gnCUcreti = 375;
+				System.out.println("Transilvanya Oteli seçtiniz\nBir günlük yetişkin konaklama ücreti " + gnYUcreti
+						+ "\nBir günlük çocuk(0-6 yaş) konaklama ücreti " + gnCUcreti + "TL");
+				System.out.println("Toplam tutar:"
+						+ otelGun * otelTutarHesaplama(otelYKisi, otelCkisi, gnYUcreti, gnCUcreti) + "TL");
+				break;
+			case 2:
+				gnYUcreti = 475;
+				gnCUcreti = 350;
+				System.out.println("Sünger Bob Otelini seçtiniz.\nBir günlük yetişkin konaklama ücreti " + gnYUcreti
+						+ "\nBir günlük çocuk(0-6 yaş) konaklama ücreti " + gnCUcreti + "TL");
+				System.out.println("Toplam tutar:"
+						+ otelGun * otelTutarHesaplama(otelYKisi, otelCkisi, gnYUcreti, gnCUcreti) + "TL");
+				break;
+			case 3:
+				gnYUcreti = 550;
+				gnCUcreti = 450;
+				System.out.println("Mickey Mouse Otelini seçtiniz.\nBir günlük yetişkin konaklama ücreti " + gnYUcreti
+						+ " TL\nBir günlük çocuk(0-6 yaş) konaklama ücreti " + gnCUcreti + "TL");
+				System.out.println("Toplam tutar:"
+						+ otelGun * otelTutarHesaplama(otelYKisi, otelCkisi, gnYUcreti, gnCUcreti) + "TL");
+			case 4:
+				gnYUcreti = 525;
+				gnCUcreti = 460;
+				System.out.println("Cartoon Network Otelini seçtiniz.\nBir günlük yetişkin konaklama ücreti "
+						+ gnYUcreti + "TL\nBir günlük çocuk(0-6 yaş) konaklama ücreti " + gnCUcreti + "TL");
+				System.out.println("Toplam tutar:"
+						+ otelGun * otelTutarHesaplama(otelYKisi, otelCkisi, gnYUcreti, gnCUcreti) + "TL");
+				break;
+			case 5:
+				gnYUcreti = 455;
+				gnCUcreti = 370;
+				System.out.println(
+						"Garden Otelini seçtiniz.\nBir günlük yetişkin konaklama ücreti 455TL\nBir günlük çocuk(0-6 yaş) konaklama ücreti 370TL");
+				System.out.println("Toplam tutar:"
+						+ otelGun * otelTutarHesaplama(otelYKisi, otelCkisi, gnYUcreti, gnCUcreti) + "TL");
+				break;
+			default:
+				System.out.println("Hatalı tuşlama yaptınız...");
+				break;
+			}
+		} else if (otelTipiSecimi == 1) {
+			System.out.println("-----5 Yıldızlı Oteller-----");
+			System.out.println(
+					"1-Rose Garden Hotel \n2-Euphoria Hotel \n3-Daisy Hotel \n4-Dandelion Hotel \n5-Lavender Hotel");
+			System.out.println("Otel seçiminizi yapınız:");
+			int otelSecim1 = scan.nextInt();
+			System.out.println("Kaç yetişkin kişi kalacaksınız:");
+			int otelYKisi = scan.nextInt();
+			System.out.println("Kaç çocuk kişi kalacaksınız:");
+			int otelCkisi = scan.nextInt();
+			System.out.println("kaç gün kalacaksınız");
+			int otelGun = scan.nextInt();
+			switch (otelSecim1) {
+			case 1:
+				gnYUcreti = 500;
+				gnCUcreti = 375;
+				System.out.println("Rose Garden Otelini seçtiniz.\nBir günlük yetişkin konaklama ücreti " + gnYUcreti
+						+ "TL\nBir günlük çocuk(0-6 yaş) konaklama ücreti " + gnCUcreti + "TL");
+				System.out.println("Toplam tutar:"
+						+ otelGun * otelTutarHesaplama(otelYKisi, otelCkisi, gnYUcreti, gnCUcreti) + "TL");
+				break;
+			case 2:
+				gnYUcreti = 650;
+				gnCUcreti = 520;
+				System.out.println("Euphoria Otelini seçtiniz.\nBir günlük yetişkin konaklama ücreti " + gnYUcreti
+						+ "TL\nBir günlük çocuk(0-6 yaş) konaklama ücreti " + gnCUcreti + "TL");
+				System.out.println("Toplam tutar:"
+						+ otelGun * otelTutarHesaplama(otelYKisi, otelCkisi, gnYUcreti, gnCUcreti) + "TL");
+				break;
+			case 3:
+				gnYUcreti = 550;
+				gnCUcreti = 450;
+				System.out.println("Daisy Otelini seçtiniz.\nBir günlük yetişkin konaklama ücreti " + gnYUcreti
+						+ "TL\nBir günlük çocuk(0-6 yaş) konaklama ücreti " + gnCUcreti + "TL");
+				System.out.println("Toplam tutar:"
+						+ otelGun * otelTutarHesaplama(otelYKisi, otelCkisi, gnYUcreti, gnCUcreti) + "TL");
+				break;
+			case 4:
+				gnYUcreti = 525;
+				gnCUcreti = 460;
+				System.out.println("Dandelion Otelini seçtiniz.\nBir günlük yetişkin konaklama ücreti " + gnYUcreti
+						+ "TL\nBir günlük çocuk(0-6 yaş) konaklama ücreti " + gnCUcreti + "TL");
+				System.out.println("Toplam tutar:"
+						+ otelGun * otelTutarHesaplama(otelYKisi, otelCkisi, gnYUcreti, gnCUcreti) + "TL");
+				break;
+			case 5:
+				gnYUcreti = 455;
+				gnCUcreti = 370;
+				System.out.println("Lavender Otelini seçtiniz.\nBir günlük yetişkin konaklama ücreti " + gnYUcreti
+						+ "TL\nBir günlük çocuk(0-6 yaş) konaklama ücreti " + gnCUcreti + "TL");
+				System.out.println("Toplam tutar:"
+						+ otelGun * otelTutarHesaplama(otelYKisi, otelCkisi, gnYUcreti, gnCUcreti) + "TL");
+				break;
+			default:
+				System.out.println("Hatalı tuşlama yaptınız...");
+				break;
+			}
+
+		}
 
 	}
+
+	// ------------------------------------------------------------------------
+	public int otelTutarHesaplama(int yetiskinS, int cocukS, int gnlkYetiskinUcreti, int gnlkCocukUcreti) {
+		int toplam = 0;
+		toplam += yetiskinS * gnlkYetiskinUcreti;
+		toplam += cocukS * gnlkCocukUcreti;
+
+		return toplam;
+	}
+
 	// -------------------------------------------------------------------------
 
 	@Override
@@ -448,7 +572,7 @@ public class Package implements IPassenger, ITicket, IAdditionalServices {
 	@Override
 	public void otoparkTutarHesapla() {
 		System.out.println("Aracınızın plakasını giriniz");
-		String aracPlaka = scan.nextLine();
+		String aracPlaka = scan.next();
 		System.out.println("Aracınız ne kadar zaman otoparkta bulunacaktır?");
 		int aracZaman = scan.nextInt();
 		if (aracZaman > 0 && aracZaman <= 3) {
@@ -482,34 +606,35 @@ public class Package implements IPassenger, ITicket, IAdditionalServices {
 // -----------------------------------------------------------
 
 class Bagaj {
-	Scanner scan = new Scanner(System.in);
+	Scanner scan8 = new Scanner(System.in);
 
 	public Bagaj() {
-		Scanner scan = new Scanner(System.in);
 		System.out.println("Yapmak istediğiniz işlemi seçiniz:");
 		System.out.println(" 1-Bagaj hakkını öğrenme\n 2-Bagaj durumu sorgulama\n 3-Kayıp bagaj bildirimi ");
-		int secim1 = scan.nextInt();
+		int secim8 = scan8.nextInt();
 
-		switch (secim1) {
+		switch (secim8) {
 		case 1:
+			System.out.println("-Eco Paket\n-Avantaj Paket\n-Comfort-Flex Paket\n-Super-Eco Paket ");
 			System.out.println("Uçuş paketinizi giriniz: ");
-			String paket = scan.nextLine();
-			paket = paket.toLowerCase();
-			bagajHakkiniOgren(paket);
+			String paket5 = scan8.next();
+			bagajHakkiniOgren(paket5);
 			break;
 		case 2:
 			System.out.println("Bilet numaranızı giriniz:");
-			String no = scan.nextLine();
+			String no = scan8.next();
 			bagajDurumuSorgulama(no);
 			break;
 		case 3:
 			System.out.println("Bagaj kodunu giriniz:");
-			String bagajNo = scan.nextLine();
+			String bagajNo = scan8.next();
 			kayıpBagajBildirimi(bagajNo);
 			break;
 		default:
-			System.out.println("Hatalı tuşlama yaptınız...");
+			System.out.println("Hatalı tuşlama yaptınız1...");
 			System.out.println("Sistemden çıkış yapılıyor");
+			break;
+
 		}
 
 	}
@@ -517,27 +642,26 @@ class Bagaj {
 
 	String bagajTakipNo;
 
-	public void bagajHakkiniOgren(String paket) {
-		if (paket.equalsIgnoreCase("Eco paket")) {
+	public void bagajHakkiniOgren(String paket1) {
+		if (paket1.equalsIgnoreCase("eco")) {
 			System.out.println("Yurt içinde 15 kg, Kıbrıs ve yurt dışında 20 kg bagaj hakkınız bulunmaktadır.");
 		}
 
-		else if (paket.equalsIgnoreCase("Super Eco paket")) {
+		else if (paket1.equalsIgnoreCase("Super-Eco")) {
 			System.out.println(
 					"Yalnızca 1 adet ve boyutları en fazla 55x40x20 cm ebatlarında olan kabin bagajı hakkınız bulunmaktadır...");
 		}
 
-		else if (paket.equalsIgnoreCase("Avantaj paket")) {
+		else if (paket1.equalsIgnoreCase("Avantaj")) {
 			System.out.println("20 kg bagaj hakkınız bulunmaktadır...");
 		}
 
-		else if (paket.equalsIgnoreCase("Comfort Flex paket")) {
+		else if (paket1.equalsIgnoreCase("Comfort-Flex")) {
 			System.out.println("Tek parça kabin ve 20 kg bagaj hakkınız bulunmaktadır...");
 		}
 
 		else {
-			System.out.println("Hatalı tuşlama yaptınız...");
-			bagajHakkiniOgren(paket);
+			System.out.println("Hatalı tuşlama yaptınız4...");
 			System.out.println("Sistemden çıkış yapılıyor...");
 			System.exit(0);
 		}

@@ -31,7 +31,7 @@ public class AdvantagePackage extends Package implements IEat, IFlyNWatch {
 			}
 			System.out.println("Seçiminizi yapınız");
 			int secim = scan.nextInt();
-			tutarHesapla(secim - 1);
+			tutarHesapla(dizi6[secim - 1]);
 			break;
 		case 2:
 			for (int i = 0, j = 0; i < 7 && j < 7; i++, j++) {
@@ -39,7 +39,7 @@ public class AdvantagePackage extends Package implements IEat, IFlyNWatch {
 			}
 			System.out.println("Seçiminizi yapınız");
 			int secim1 = scan.nextInt();
-			tutarHesapla(secim1 - 1);
+			tutarHesapla(dizi6[secim1 - 1]);
 			break;
 		case 3:
 			for (int i = 0, j = 0; i < 7 && j < 7; i++, j++) {
@@ -47,7 +47,7 @@ public class AdvantagePackage extends Package implements IEat, IFlyNWatch {
 			}
 			System.out.println("Seçiminizi yapınız");
 			int secim3 = scan.nextInt();
-			tutarHesapla(secim3 - 1);
+			tutarHesapla(dizi6[secim3 - 1]);
 			break;
 		default:
 			System.out.println("Hatalı tuşlama yaptınız.");
@@ -61,9 +61,9 @@ public class AdvantagePackage extends Package implements IEat, IFlyNWatch {
 		System.out.println("Kaç adet almak istersiniz:");
 		int adet = scan.nextInt();
 		System.out.println("Alışverişinizi tamamladınız mı?");
-		String cevap = scan.nextLine();
+		String cevap = scan.next();
 		if (cevap.equalsIgnoreCase("evet")) {
-			return adet * secim;
+			System.out.println("Toplam tutar:"+(adet*secim));
 		} else if (cevap.equalsIgnoreCase("hayır")) {
 			yemekGoruntule();
 		} else {
@@ -81,9 +81,15 @@ public class AdvantagePackage extends Package implements IEat, IFlyNWatch {
 		switch (netflix) {
 		case 1:
 			diziGoruntule();
+			System.out.println("Seçiminizi yapınız.");
+			int choice1=scan.nextInt();
+			System.out.println(diziler[choice1-1] +" başlıyor.Keyifli seyirler dileriz...");
 			break;
 		case 2:
 			filmGoruntule();
+			System.out.println("Seçiminizi yapınız.");
+			int choice2=scan.nextInt();
+			System.out.println(filmler[choice2-1] +" başlıyor.Keyifli seyirler dileriz...");
 			break;
 		default:
 			System.out.println("Hatalı tuşlama yaptınız ");

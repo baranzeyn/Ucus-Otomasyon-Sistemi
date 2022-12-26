@@ -53,7 +53,7 @@ public class ComfortFlexPackage  extends Package implements IEat,IFlyNWatch {
 		System.out.println("Kaç adet almak istersiniz:");
 		int adet = scan.nextInt();
 		System.out.println("Alışverişinizi tamamladınız mı?");
-		String cevap = scan.nextLine();
+		String cevap = scan.next();
 		if (cevap.equalsIgnoreCase("evet")) {
 			return adet * secim;
 		} else if (cevap.equalsIgnoreCase("hayır")) {
@@ -78,9 +78,15 @@ public class ComfortFlexPackage  extends Package implements IEat,IFlyNWatch {
 		switch(netflix) {
 		case 1:
 			diziGoruntule();
+			System.out.println("Seçiminizi yapınız.");
+			int choice1=scan.nextInt();
+			System.out.println(diziler[choice1-1] +" başlıyor.Keyifli seyirler dileriz...");
 			break;
 		case 2:
 			filmGoruntule();
+			System.out.println("Seçiminizi yapınız.");
+			int choice2=scan.nextInt();
+			System.out.println(filmler[choice2-1] +" başlıyor.Keyifli seyirler dileriz...");
 			break;
 			default:
 				System.out.println("Hatalı tuşlama yaptınız ");
