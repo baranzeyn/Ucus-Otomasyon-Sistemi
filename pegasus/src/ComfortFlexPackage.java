@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class ComfortFlexPackage  extends Package implements IEat,IFlyNWatch {
+public class ComfortFlexPackage extends Package implements IEat, IFlyNWatch {
 	Scanner scan = new Scanner(System.in);
 
 	public void yemekGoruntule() {
@@ -74,43 +74,42 @@ public class ComfortFlexPackage  extends Package implements IEat,IFlyNWatch {
 		int netflix;
 		System.out.println("Fly&Watch hizmetine hoşgeldiniz");
 		System.out.println("Dizileri görüntülemek için 1'e\nFilmleri görüntülemek için 2'i tuşlayınız");
-		netflix=scan.nextInt();
-		switch(netflix) {
+		netflix = scan.nextInt();
+		switch (netflix) {
 		case 1:
 			diziGoruntule();
 			System.out.println("Seçiminizi yapınız.");
-			int choice1=scan.nextInt();
-			System.out.println(diziler[choice1-1] +" başlıyor.Keyifli seyirler dileriz...");
+			int choice1 = scan.nextInt();
+			System.out.println(diziler[choice1 - 1] + " başlıyor.Keyifli seyirler dileriz...");
 			break;
 		case 2:
 			filmGoruntule();
 			System.out.println("Seçiminizi yapınız.");
-			int choice2=scan.nextInt();
-			System.out.println(filmler[choice2-1] +" başlıyor.Keyifli seyirler dileriz...");
+			int choice2 = scan.nextInt();
+			System.out.println(filmler[choice2 - 1] + " başlıyor.Keyifli seyirler dileriz...");
 			break;
-			default:
-				System.out.println("Hatalı tuşlama yaptınız ");
-				break;
+		default:
+			System.out.println("Hatalı tuşlama yaptınız ");
+			break;
 		}
 	}
 
 	@Override
-	public void diziGoruntule() {//10.
+	public void diziGoruntule() {// 10.
 		// TODO Auto-generated method stub
-		for(int i=0;i<=12;i++) {
+		for (int i = 0; i <= 12; i++) {
 			System.out.println(diziler[i]);
 		}
-		
+
 	}
 
 	@Override
-	public void filmGoruntule() {//11.
+	public void filmGoruntule() {// 11.
 		// TODO Auto-generated method stub
-		for(int i=0;i<=12;i++) {
+		for (int i = 0; i <= 12; i++) {
 			System.out.println(filmler[i]);
 		}
-		
-	}
 
+	}
 
 }

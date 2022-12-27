@@ -1,4 +1,4 @@
 
-public class SuperEcoPackage {
+public class SuperEcoPackage extends Package{
 
 }

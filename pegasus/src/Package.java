@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class Package implements IPassenger, ITicket, IAdditionalServices {
+public class Package implements IPassenger, ITicket, IAdditionalServices, IFlights{
 	Scanner scan = new Scanner(System.in);
 
 	ArrayList<String> biletalAd = new ArrayList<String>();
@@ -12,6 +12,10 @@ public class Package implements IPassenger, ITicket, IAdditionalServices {
 	ArrayList<Integer> biletSonTutar = new ArrayList<Integer>();
 	ArrayList<Integer> biletalNo = new ArrayList<Integer>();
 	ArrayList<Integer> checkinNo = new ArrayList<Integer>();
+	ArrayList<Integer> uygunKalkis = new ArrayList<Integer>();
+	ArrayList<Integer> uygunİnis = new ArrayList<Integer>();
+	ArrayList<Integer> uygunTarih = new ArrayList<Integer>();
+	ArrayList<Integer> uygunUcret = new ArrayList<Integer>();
 
 	public Package() {
 	}
@@ -74,70 +78,141 @@ public class Package implements IPassenger, ITicket, IAdditionalServices {
 		String nereden = scan.next();
 		System.out.println("Nereye: ");
 		String nereye = scan.next();
+		System.out.println("Gidiş tarihini ay ve gün olarak giriniz:");
+		double tarih1 = scan.nextDouble();
 		System.out.println("1.Tek Yön\n2.Çift Yön");
 		System.out.println("Seçiminizi yapınız: ");
 		int yon = scan.nextInt();
+
+		System.out.println("1-En yakın tarihli bilet bulma \n2-Uygun fiyatlı bilet bulma");
+		int select3 = scan.nextInt();
 		Package b = new Package(2);
+
 		if (yon == 1) {
 			for (int y : biletalYas) {
 				if (y > 0 && y <= 6) {
-					System.out.println("Bilet ücretiniz:" + biletHesaplaKid());
-					biletSonTutar.add(biletHesaplaKid());
-					biletAlNo();
-					checkinNoAl();
+					if (select3 == 1) {
+						yakınbiletBul(nereden, nereye);
+
+						System.out.println("Bilet ücretiniz:" + biletHesaplaKid(yakınbiletBul(nereden, nereye)));
+						biletSonTutar.add(biletHesaplaKid(yakınbiletBul(nereden, nereye)));
+						biletAlNo();
+						checkinNoAl();
+					}
+
+					else {
+						uygunbiletBul(nereden, nereye, tarih1);
+						System.out
+								.println("Bilet ücretiniz:" + biletHesaplaKid(uygunbiletBul(nereden, nereye, tarih1)));
+						biletSonTutar.add(biletHesaplaKid(uygunbiletBul(nereden, nereye, tarih1)));
+						biletAlNo();
+						checkinNoAl();
+					}
+
 				}
 
 				else if (y > 6 && y < 65) {
-					System.out.println("Bilet ücretiniz:" + biletHesapla());
-					biletSonTutar.add(biletHesapla());
-					biletAlNo();
-					checkinNoAl();
+					if (select3 == 1) {
+						yakınbiletBul(nereden, nereye);
+						System.out.println("Bilet ücretiniz:" + biletHesapla(yakınbiletBul(nereden, nereye)));
+						biletSonTutar.add(biletHesapla(yakınbiletBul(nereden, nereye)));
+						biletAlNo();
+						checkinNoAl();
+
+					} else {
+						uygunbiletBul(nereden, nereye, tarih1);
+						System.out.println("Bilet ücretiniz:" + biletHesapla(uygunbiletBul(nereden, nereye, tarih1)));
+						biletSonTutar.add(biletHesapla(uygunbiletBul(nereden, nereye, tarih1)));
+						biletAlNo();
+						checkinNoAl();
+					}
 
 				} else {
-					System.out.println("Bilet ücretiniz:" + biletHesaplaOld());
-					biletSonTutar.add(biletHesaplaOld());
-					biletAlNo();
-					checkinNoAl();
+					if (select3 == 1) {
+						yakınbiletBul(nereden, nereye);
+						System.out.println("Bilet ücretiniz:" + biletHesaplaOld(yakınbiletBul(nereden, nereye)));
+						biletSonTutar.add(biletHesaplaOld(yakınbiletBul(nereden, nereye)));
+						biletAlNo();
+						checkinNoAl();
+
+					} else {
+						uygunbiletBul(nereden, nereye, tarih1);
+						System.out
+								.println("Bilet ücretiniz:" + biletHesaplaOld(uygunbiletBul(nereden, nereye, tarih1)));
+						biletSonTutar.add(biletHesaplaOld(uygunbiletBul(nereden, nereye, tarih1)));
+						biletAlNo();
+						checkinNoAl();
+
+					}
 
 				}
 			}
 		}
 
 		else if (yon == 2) {
+			System.out.println("Dönüş tarihini giriniz:");
+			double tarih2 = scan.nextDouble();
 			for (int z : biletalYas) {
 				if (z > 0 && z <= 6) {
-					System.out.println("Bilet ücretiniz:" + (biletHesaplaKid() * 2));
-					biletAlNo();
-					checkinNoAl();
+					if (select3 == 1) {
+						yakınbiletBul(nereden, nereye);
+						System.out.println("Bilet ücretiniz:" + (biletHesaplaKid(yakınbiletBul(nereden, nereye)) * 2));
+						biletAlNo();
+						checkinNoAl();
+					} else {
+						uygunbiletBul(nereden, nereye, tarih1);
+						System.out.println(
+								"Bilet ücretiniz:" + (biletHesaplaKid(uygunbiletBul(nereden, nereye, tarih1)) * 2));
+						biletAlNo();
+						checkinNoAl();
+					}
+
 				}
 
 				else if (z > 6 && z < 65) {
-					System.out.println("Bilet ücretiniz:" + biletHesapla() * 2);
-					biletAlNo();
-					checkinNoAl();
-
+					if (select3 == 1) {
+						yakınbiletBul(nereden, nereye);
+						System.out.println("Bilet ücretiniz:" + biletHesapla(yakınbiletBul(nereden, nereye)) * 2);
+						biletAlNo();
+						checkinNoAl();
+					} else {
+						uygunbiletBul(nereden, nereye, tarih1);
+						System.out
+								.println("Bilet ücretiniz:" + biletHesapla(uygunbiletBul(nereden, nereye, tarih1)) * 2);
+						biletAlNo();
+						checkinNoAl();
+					}
 				}
 
-				else {
-					System.out.println("Bilet ücretiniz:" + (biletHesaplaOld() * 2));
-					biletAlNo();
-					checkinNoAl();
+				else if (z >= 65) {
+					if (select3 == 1) {
+						yakınbiletBul(nereden, nereye);
+						System.out.println("Bilet ücretiniz:" + (biletHesaplaOld(yakınbiletBul(nereden, nereye)) * 2));
+						biletAlNo();
+						checkinNoAl();
+					} else {
+						uygunbiletBul(nereden, nereye, tarih1);
+						System.out.println(
+								"Bilet ücretiniz:" + (biletHesaplaOld(uygunbiletBul(nereden, nereye, tarih1)) * 2));
+						biletAlNo();
+						checkinNoAl();
 
+					}
 				}
 			}
 
-		} else {
+		}
+		else {
 			System.out.println("Hatalı tuşlama yaptınız...");
 		}
-		System.out.println("Toplam Tutar: " + biletToplamTutar());
+
 	}
 
 	// -----------------------------------------------------------
 	public int biletAlNo() {
-		int z = (int) (Math.random() * 100000);
-		biletalNo.add(z);
-		System.out.println("Bilet numaranız:" + z);
-		return z;
+		int m = (int) (Math.random() * 100000);
+		biletalNo.add(m);
+		return m;
 	}
 
 	// -----------------------------------------------------------
@@ -149,19 +224,19 @@ public class Package implements IPassenger, ITicket, IAdditionalServices {
 	}
 
 	// -----------------------------------------------------------
-	public int biletHesaplaKid() {
-		return 26;
+	public int biletHesaplaKid(int uygun) {
+		return uygun * (3 / 4);
 
 	}
 	// -----------------------------------------------------------
 
-	public int biletHesapla() {
-		return 32;
+	public int biletHesapla(int uygun) {
+		return uygun;
 	}
 	// -----------------------------------------------------------
 
-	public int biletHesaplaOld() {
-		return 33;
+	public int biletHesaplaOld(int uygun) {
+		return uygun * (1 / 10);
 
 	}
 	// -----------------------------------------------------------
@@ -183,7 +258,7 @@ public class Package implements IPassenger, ITicket, IAdditionalServices {
 		System.out.println("*****************");
 		System.out.println(
 				"en uygun fiyat\n yurt içinde 15 kg, Kıbrıs ve yurt dışında 20 kg bagaj hakkı\n Eko Paket'i ihtiyacına uygun ek hizmetlerle, dilediğin gibi şekillendirebilirsin.\n");
-		System.out.println("Super Eco Paket\n");
+		System.out.println("Super Eco \n");
 		System.out.println("******************");
 		System.out.println(
 				"SADECE DIŞ HATLARDA GEÇERLİDİR\n yalnızca 1 adet ve boyutları en fazla 55x40x20 cm ebatlarında olan kabin bagajı hakkı");
@@ -582,7 +657,7 @@ public class Package implements IPassenger, ITicket, IAdditionalServices {
 		}
 		// TODO Auto-generated method stub
 
-	}
+	}// ------------------------------------------------------------------------
 
 	@Override
 	public void ekBagaj() {
@@ -602,10 +677,112 @@ public class Package implements IPassenger, ITicket, IAdditionalServices {
 		System.out.println("Bagaj için ödeyeceğiniz tutar:" + (bagaj * 30));
 
 	}
+
+	@Override
+	public int uygunbiletBul(String kalkis1, String inis1, double tarih1) {
+		// TODO Auto-generated method stub
+		int i;
+		for (i = 0; i < kalkisyer.length; i++) {
+			if (kalkisyer[i].equalsIgnoreCase(kalkis1)) {
+				uygunKalkis.add(i);
+			}
+		}
+		for (i = 0; i < inisyer.length; i++) {
+			if (inisyer[i].equalsIgnoreCase(inis1)) {
+				uygunİnis.add(i);
+			}
+		}
+		for (i = 0; i < date.length; i++) {
+			if (date[i] == tarih1) {
+				uygunTarih.add(i);
+			}
+		}
+		for (int x : uygunKalkis) {
+			for (int y : uygunİnis) {
+				for (int z : uygunTarih) {
+					if ((x == y) && (y == z)) {
+						uygunUcret.add(x);
+					}
+				}
+			}
+		}
+		System.out.println("İsteklerinize uygun " + uygunUcret.size() + " bilet görüntüleniyor");
+		int k = uygunUcret.size();
+		int uygunFiyat = 0;
+
+		if (k == 1) {
+			uygunFiyat = ucret[uygunUcret.get(k - 1)];
+		}
+
+		else if (k == 0) {
+			System.out.println("Aradığınız kriterde bilet bulunmamaktadır.");
+			System.exit(0);
+		} else {
+			for (int l = 0; l < k; l++) {
+				System.out.println("Seferlerin ücretleri:\n" + ucret[uygunUcret.get(l)]);
+				if (ucret[uygunUcret.get(l)] > ucret[uygunUcret.get(l + 1)]) {
+					uygunFiyat = ucret[uygunUcret.get(l + 1)];
+				}
+			}
+
+		}
+		System.out.println("Aranan kriterlerdeki bilet ücreti:" + uygunFiyat);
+		return uygunFiyat;
+	}
+
+	@Override
+	public int yakınbiletBul(String kalkis2, String inis2) {
+		int i;
+		int z = 0;
+		for (i = 0; i < kalkisyer.length; i++) {
+			if (kalkisyer[i].equalsIgnoreCase(kalkis2)) {
+				uygunKalkis.add(i);
+			}
+		}
+		for (i = 0; i < inisyer.length; i++) {
+			if (inisyer[i].equalsIgnoreCase(inis2)) {
+				uygunİnis.add(i);
+			}
+		}
+		for (int x : uygunKalkis) {
+			for (int y : uygunİnis) {
+				if (x == y) {
+					uygunTarih.add(x);
+				}
+			}
+		}
+		System.out.println("İsteklerinize uygun " + uygunTarih.size() + " bilet görüntüleniyor");
+		int k = uygunTarih.size();
+		double uyguntarih1;
+
+		for (int l = 0; l < k; l++) {
+			System.out.println("Seferlerin tarihleri :\n" + date[uygunTarih.get(l)]);
+			if (k == 1) {
+				uyguntarih1 = date[uygunTarih.get(k - 1)];
+				z = 0;
+			}
+
+			else if (k == 0) {
+				System.out.println("Aradığınız kriterde bilet bulunmamaktadır.");
+				System.exit(0);
+			} else {
+				for (l = 0; l < k; l++) {
+					System.out.println("Seferlerin ücretleri:\n" + date[uygunTarih.get(l)]);
+					if (date[uygunTarih.get(l)] > date[uygunTarih.get(l + 1)]) {
+						uyguntarih1 = date[uygunTarih.get(l + 1)];
+						z = l + 1;
+					}
+				}
+
+			}
+		}
+
+		return ucret[z];
+	}
 }
 // -----------------------------------------------------------
 
-class Bagaj {
+class Bagaj implements IBagaj{
 	Scanner scan8 = new Scanner(System.in);
 
 	public Bagaj() {
@@ -666,7 +843,7 @@ class Bagaj {
 			System.exit(0);
 		}
 	}
-	// -----------------------------------------------------------
+	// ----------------------------------------------------------
 
 	public void bagajDurumuSorgulama(String no) {
 		Scanner scan = new Scanner(System.in);
