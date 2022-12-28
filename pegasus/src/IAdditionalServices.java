@@ -7,5 +7,4 @@ public interface IAdditionalServices {
 	 void otelGoruntule();
 	 void otoparkHizmeti();
 	 void otoparkTutarHesapla();
-
 }

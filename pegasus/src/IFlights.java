@@ -23,5 +23,4 @@ public interface IFlights {
 	int uygunbiletBul(String kalkis1, String inis1, double tarih1);
 
 	int yakınbiletBul(String kalkis2, String inis2);
-
 }

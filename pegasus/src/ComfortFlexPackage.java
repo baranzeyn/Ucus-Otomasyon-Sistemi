@@ -1,8 +1,13 @@
 import java.util.Scanner;
 
 public class ComfortFlexPackage extends Package implements IEat, IFlyNWatch {
+	
+	public ComfortFlexPackage() {
+		
+	}
+	
 	Scanner scan = new Scanner(System.in);
-
+	//*************************************31.METHOD
 	public void yemekGoruntule() {
 		System.out.println("İçecekler için 1'i\nYemekler için 2'yi\nTatlılar için 3'ü tuşlayınız. ");
 		int secim2 = scan.nextInt();
@@ -17,7 +22,7 @@ public class ComfortFlexPackage extends Package implements IEat, IFlyNWatch {
 
 		String[] dizi5 = { "Tiramisu", "Kazandibi", "Sütlaç", "Profiterol", "San Sebastian", "Magnolia",
 				"Saray Sarması", "Künefe", "Şekerpare", "Karpuz Kaldıran" };
-		int[] dizi6 = { 80, 85, 90, 95, 100, 105, 110, 115, 120, 0 };
+		int[] dizi6 = { 150, 85, 90, 95, 200, 85, 110, 115, 120, 0};
 
 		switch (secim2) {
 		case 1:
@@ -26,7 +31,7 @@ public class ComfortFlexPackage extends Package implements IEat, IFlyNWatch {
 			}
 			System.out.println("Seçiminizi yapınız");
 			int secim = scan.nextInt();
-			tutarHesapla(secim - 1);
+			tutarHesapla(dizi2[secim - 1]);
 			break;
 		case 2:
 			for (int i = 0, j = 0; i < 10 && j < 10; i++, j++) {
@@ -34,7 +39,7 @@ public class ComfortFlexPackage extends Package implements IEat, IFlyNWatch {
 			}
 			System.out.println("Seçiminizi yapınız");
 			int secim1 = scan.nextInt();
-			tutarHesapla(secim1 - 1);
+			tutarHesapla(dizi4[secim1 - 1]);
 			break;
 		case 3:
 			for (int i = 0, j = 0; i < 10 && j < 10; i++, j++) {
@@ -42,37 +47,41 @@ public class ComfortFlexPackage extends Package implements IEat, IFlyNWatch {
 			}
 			System.out.println("Seçiminizi yapınız");
 			int secim3 = scan.nextInt();
-			tutarHesapla(secim3 - 1);
+			tutarHesapla(dizi6[secim3 - 1]);
 			break;
 		default:
 			System.out.println("Hatalı tuşlama yaptınız.");
 		}
 	}
 
+	int toplam1 = 0;
+	//*************************************32.METHOD
 	public int tutarHesapla(int secim) {
+
 		System.out.println("Kaç adet almak istersiniz:");
 		int adet = scan.nextInt();
 		System.out.println("Alışverişinizi tamamladınız mı?");
 		String cevap = scan.next();
 		if (cevap.equalsIgnoreCase("evet")) {
-			return adet * secim;
+			System.out.println("Toplam Tutar: " + (toplam1 + (adet * secim)));
 		} else if (cevap.equalsIgnoreCase("hayır")) {
+			toplam1 = adet * secim;
 			yemekGoruntule();
 		} else {
 			System.out.println("Hatalı tuşlama yaptınız");
 		}
 		return 0;
 	}
-
+	//*************************************33.METHOD
 	@Override
 	public void yemek() {
 		System.out.println("Menüyü Görüntüleniyor...");
 		yemekGoruntule();
 	}
-
+	//*************************************34.METHOD
 	public void flyNwatch() {
 		int netflix;
-		System.out.println("Fly&Watch hizmetine hoşgeldiniz");
+		System.out.println("Fly&Watch Hizmetine Hoşgeldiniz");
 		System.out.println("Dizileri görüntülemek için 1'e\nFilmleri görüntülemek için 2'i tuşlayınız");
 		netflix = scan.nextInt();
 		switch (netflix) {
@@ -93,7 +102,7 @@ public class ComfortFlexPackage extends Package implements IEat, IFlyNWatch {
 			break;
 		}
 	}
-
+	//*************************************35.METHOD
 	@Override
 	public void diziGoruntule() {// 10.
 		// TODO Auto-generated method stub
@@ -102,7 +111,7 @@ public class ComfortFlexPackage extends Package implements IEat, IFlyNWatch {
 		}
 
 	}
-
+	//*************************************36.METHOD
 	@Override
 	public void filmGoruntule() {// 11.
 		// TODO Auto-generated method stub

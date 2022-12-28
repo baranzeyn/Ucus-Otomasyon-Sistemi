@@ -1,17 +1,22 @@
 import java.util.Scanner;
 
 public class AdvantagePackage extends Package implements IEat, IFlyNWatch {
+
+	public AdvantagePackage() {
+
+	}
+
 	Scanner scan = new Scanner(System.in);
 
 	@Override
-	public void yemek() { // 7.method
+	public void yemek() { 
 		System.out.println("Menüyü Görüntüleniyor...");
 		yemekGoruntule();
 
 	}
 
 	@Override
-	public void yemekGoruntule() {// 8.method
+	public void yemekGoruntule() {
 		System.out.println("İçecekler için 1'i\nYemekler için 2'yi\nTatlılar için 3'ü tuşlayınız. ");
 		int secim2 = scan.nextInt();
 
@@ -22,7 +27,7 @@ public class AdvantagePackage extends Package implements IEat, IFlyNWatch {
 		int[] dizi4 = { 60, 70, 80, 120, 130, 95, 85, };
 
 		String[] dizi5 = { "Tiramisu", "Kazandibi", "Sütlaç", "Magnolia", "Künefe", "Şekerpare", "Karpuz Kaldıran" };
-		int[] dizi6 = { 80, 85, 90, 95, 100, 100, 0 };
+		int[] dizi6 = { 150, 85, 90, 90, 100, 100, 0 };
 
 		switch (secim2) {
 		case 1:
@@ -31,7 +36,7 @@ public class AdvantagePackage extends Package implements IEat, IFlyNWatch {
 			}
 			System.out.println("Seçiminizi yapınız");
 			int secim = scan.nextInt();
-			tutarHesapla(dizi6[secim - 1]);
+			tutarHesapla(dizi2[secim - 1]);
 			break;
 		case 2:
 			for (int i = 0, j = 0; i < 7 && j < 7; i++, j++) {
@@ -39,7 +44,7 @@ public class AdvantagePackage extends Package implements IEat, IFlyNWatch {
 			}
 			System.out.println("Seçiminizi yapınız");
 			int secim1 = scan.nextInt();
-			tutarHesapla(dizi6[secim1 - 1]);
+			tutarHesapla(dizi4[secim1 - 1]);
 			break;
 		case 3:
 			for (int i = 0, j = 0; i < 7 && j < 7; i++, j++) {
@@ -55,41 +60,43 @@ public class AdvantagePackage extends Package implements IEat, IFlyNWatch {
 
 	}
 
+	int toplam1 = 0;
+
 	@Override
-	public int tutarHesapla(int secim) {// 9.method
+	public int tutarHesapla(int secim) {
 
 		System.out.println("Kaç adet almak istersiniz:");
 		int adet = scan.nextInt();
 		System.out.println("Alışverişinizi tamamladınız mı?");
 		String cevap = scan.next();
 		if (cevap.equalsIgnoreCase("evet")) {
-			System.out.println("Toplam tutar:"+(adet*secim));
+			System.out.println("Toplam Tutar:" + (toplam1 + (adet * secim)));
 		} else if (cevap.equalsIgnoreCase("hayır")) {
+			toplam1 = adet * secim;
 			yemekGoruntule();
 		} else {
 			System.out.println("Hatalı tuşlama yaptınız");
 		}
 		return 0;
-
 	}
 
 	public void flyNwatch() {
 		int netflix;
-		System.out.println("Fly&Watch hizmetine hoşgeldiniz");
-		System.out.println("Dizileri görüntülemek için 1'e\nFilmleri görüntülemek için 2'i tuşlayınız");
+		System.out.println("Fly&Watch Hizmetine Hoşgeldiniz.");
+		System.out.println("Dizileri görüntülemek için 1'i\nFilmleri görüntülemek için 2'i tuşlayınız");
 		netflix = scan.nextInt();
 		switch (netflix) {
 		case 1:
 			diziGoruntule();
 			System.out.println("Seçiminizi yapınız.");
-			int choice1=scan.nextInt();
-			System.out.println(diziler[choice1-1] +" başlıyor.Keyifli seyirler dileriz...");
+			int choice1 = scan.nextInt();
+			System.out.println(diziler[choice1 - 1] + " başlıyor.Keyifli seyirler dileriz...");
 			break;
 		case 2:
 			filmGoruntule();
 			System.out.println("Seçiminizi yapınız.");
-			int choice2=scan.nextInt();
-			System.out.println(filmler[choice2-1] +" başlıyor.Keyifli seyirler dileriz...");
+			int choice2 = scan.nextInt();
+			System.out.println(filmler[choice2 - 1] + " başlıyor.Keyifli seyirler dileriz...");
 			break;
 		default:
 			System.out.println("Hatalı tuşlama yaptınız ");
@@ -98,8 +105,7 @@ public class AdvantagePackage extends Package implements IEat, IFlyNWatch {
 	}
 
 	@Override
-	public void diziGoruntule() {// 10.
-		// TODO Auto-generated method stub
+	public void diziGoruntule() {
 		for (int i = 0; i <= 12; i++) {
 			System.out.println(diziler[i]);
 		}
@@ -107,12 +113,9 @@ public class AdvantagePackage extends Package implements IEat, IFlyNWatch {
 	}
 
 	@Override
-	public void filmGoruntule() {// 11.
-		// TODO Auto-generated method stub
+	public void filmGoruntule() {
 		for (int i = 0; i <= 12; i++) {
 			System.out.println(filmler[i]);
 		}
-
 	}
-
 }
