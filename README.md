@@ -1,2 +1,2 @@
 # Pegasus-Odev
- Kasaba Official
+Bu proje okulda nesneye yönelik programlama yaptığımız bir projedir. 
